@@ -310,3 +310,4 @@ xdescribe('Testing challenge 10', () => {
     expect(extractStats(snorlaxStats.stats).length).toStrictEqual(3);
   });
 });
+
