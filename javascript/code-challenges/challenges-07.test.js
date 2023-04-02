@@ -1,7 +1,5 @@
 'use strict';
 
-const { first } = require("cheerio/lib/api/traversing");
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -26,10 +24,7 @@ let starWarsPeople = [
   }
 ];
 
-const sortStarWarsCharacters = (starWarsArr) => {
-  return starWarsArr.sort((a, b) => parseInt(b.height) - parseInt(a.height));
-  
-};
+const sortStarWarsCharacters = (starWarsArr) => starWarsArr.sort((a, b) => b.height - a.height);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -38,21 +33,16 @@ Write a function named removeThree that takes an index and an array. The functio
 ------------------------------------------------------------------------------------------------ */
 
 const removeThree = (idx, arr) => {
-  //idx is equal to the starting index. three is the number of items were removing
   arr.splice(idx, 3);
   return arr;
-
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
 Write a function named joinArray that takes an array and joins all of the elements together in one string on a space.
 ------------------------------------------------------------------------------------------------ */
 
-const joinArray = (arr) => {
-  return arr.join(' ');
-};
+const joinArray = (arr) => arr.join(' ');
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -69,10 +59,10 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  for (let i = 0; i <= str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     result.push(str.slice(i));
   }
-
+  result.push('');
   return result;
 };
 
@@ -84,9 +74,7 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
-  return arr.split('');
-};
+const wordsToCharList = (arr) => arr.split('');
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -132,13 +120,10 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  let ingredients = recipe.ingredients;
-  ingredients.forEach(foodItem => {
-    let firstSpace = foodItem.indexOf(' ');
-    let withoutAmount = foodItem.slice(firstSpace + 1);
-    let secondSpace = withoutAmount.indexOf(' ');
-    let withoutUnits = withoutAmount.slice(secondSpace + 1);
-    result.push(withoutUnits);
+  recipe.ingredients.forEach(ingredient => {
+    let withoutFirst = ingredient.slice(ingredient.indexOf(' ') + 1);
+    let withoutSecond = withoutFirst.slice(withoutFirst.indexOf(' ') + 1);
+    result.push(withoutSecond);
   });
   return result;
 };
@@ -153,7 +138,7 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+
   return result;
 };
 
@@ -370,4 +355,3 @@ xdescribe('Testing challenge 13', () => {
     expect(extractVowels('The quick brown fox')).toStrictEqual(['Th qck brwn fx', 'eioou']);
   });
 });
-
